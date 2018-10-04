@@ -8,7 +8,7 @@ Es sind verschiedene Ansätze möglich. Beginnen wir mit einem Beispiel aus dem 
 
 ### Über die Eigenschaft Werke `P800`
 
-Künstlern können über die Eigenschaft Werke (notable work) Kunstwerke zugewiesen werden, deren Urheber sie sind.
+Künstlern können über die Eigenschaft Werke (notable work) Kunstwerke zugewiesen werden, deren Urheber sie sind. Sucht man ausgehend vom Künster nach diesen aufgelisteten Werken, erhält man die Einträge in diese Auflistung:
 
 ```sparql
 SELECT ?item ?itemLabel
@@ -49,7 +49,7 @@ Offensichtlich wird die Eigenschaft `P800` Werke eher als optional verstanden un
 
 Abfrageergebnisse vom 4.10.2018:
 
-Künstler | Werke per `P800` | Werke per `P170`
+Künstler | Werke via `P800` | Werke via `P170`
 -------- | -------- | --------
 Leonardo da Vinci | 13 | 82
 Cimabue | 4 | 31
@@ -60,7 +60,7 @@ Jules Dupré | 3 | 79
 
 ### Definition von `P800` Werke
 
-Dieser empirische Befund steht in Einklang mit der [Definition der Eigenschaft  `P800` ](https://www.wikidata.org/wiki/Property: `P800` ):
+Dieser empirische Befund steht in Einklang mit der [Definition der Eigenschaft  `P800` ](https://www.wikidata.org/wiki/Property:P800 ):
 
 Beschreibung DE: "relevante wissenschaftliche oder künstlerische Werke der Person"
 
