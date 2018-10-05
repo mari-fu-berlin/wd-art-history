@@ -1,4 +1,6 @@
-# Hinweise für die Benutzung
+# Wikidata für die Digitale Kunstgeschichte nutzen - Anleitungen, Erkundungen, Fragen
+
+## Hinweise für die Benutzung
 
 Dieses Repositorium ist eine Sammlung von praktischen Erprobungen und Anleitungen zur Verwendung von SPARQL-Abragen in Wikidata, die für die Verwendung im Bereich digitale Kunstgeschichte und kunsthistorische Datenbanken interessant sein könnten.
 
@@ -9,3 +11,9 @@ Es geht primär um domainspezifische Fragestellungen. Das schließt auch Fragen 
 Die hier zusammengetragenen Informationen gehen von Problemstellungen aus, die bei einem Workshop zu Wikidata in der Digitalen Kunstgeschichte am 1. Oktober 2018 an der [Bibliotheca Hertziana](http://www.biblhertz.it/) in Rom erarbeitet wurden.
 
 Sie sind als **work in progress** zu verstehen, Hinweise, Ergänzungen, Kommentare sind herzlich willkommen!
+
+Eine sehr gute Einführung in die Grundlagen von SPARQL im Hinblick auf die Kunstgeschichte bieten die Unterlagen zu einem Workshop, die Claudia Müller-Birn auf Github zur Verfügung gestellt hat: [clmb/wikidata_workshop](https://github.com/clmb/wikidata_workshop).
+
+## Themen
+
+[Suche nach Werken eines Künstlers](https://github.com/mari-fu-berlin/wd-art-history/tree/master/Queries_Suche_nach_Werken)
