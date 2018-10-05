@@ -135,13 +135,13 @@ Abfragetechnisch lässt sich dieses verwirrende Bild sehr leicht durch die Verwe
 SELECT DISTINCT ?item ?itemLabel
 WHERE
  {
-   ?item wdt:P31/wdt:P279* wd:Q838948. # Ein Objekt der Klasse Kunstwerke oder eine ihrer Unterklassen
+   ?item wdt:P31/wdt:P279* wd:Q838948. # Ein Objekt der Klasse Kunstwerke oder einer ihrer Unterklassen
    ?item wdt:P170 wd:Q762 . # Eigenschaft Urheber: Leonardo da Vinci
 
   SERVICE wikibase:label{ bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
-[auf WDQS ausprobieren ...](https://query.wikidata.org/#%23%20Suche%20nach%20Werken%20eines%20K%C3%BCnstlers%2C%20ausschlie%C3%9Flich%20Kunstwerke%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%0AWHERE%0A%20%7B%0A%20%20%20%3Fitem%20wdt%3AP31%2Fwdt%3AP279%2a%20wd%3AQ838948.%20%23%20Ein%20Objekt%20der%20Klasse%20Kunstwerke%20oder%20eine%20ihrer%20Unterklassen%0A%20%20%20%3Fitem%20wdt%3AP170%20wd%3AQ762%20.%20%23%20Eigenschaft%20Urheber%3A%20Leonardo%20da%20Vinci%0A%0A%20%20SERVICE%20wikibase%3Alabel%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D)
+[auf WDQS ausprobieren ...](https://query.wikidata.org/#%23%20Suche%20nach%20Werken%20eines%20K%C3%BCnstlers%2C%20ausschlie%C3%9Flich%20Kunstwerke%0A%0ASELECT%20DISTINCT%20%3Fitem%20%3FitemLabel%0AWHERE%0A%20%7B%0A%20%20%20%3Fitem%20wdt%3AP31%2Fwdt%3AP279%2a%20wd%3AQ838948.%20%23%20Ein%20Objekt%20der%20Klasse%20Kunstwerke%20oder%20einer%20ihrer%20Unterklassen%0A%20%20%20%3Fitem%20wdt%3AP170%20wd%3AQ762%20.%20%23%20Eigenschaft%20Urheber%3A%20Leonardo%20da%20Vinci%0A%0A%20%20SERVICE%20wikibase%3Alabel%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D)
 
 Ergebnis (5.10.2018): 79 Werke (Kunstwerke mit mehrfacher Klassifizkation werden nun nur einmal ausgegeben)
 
