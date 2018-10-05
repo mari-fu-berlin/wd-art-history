@@ -1,6 +1,6 @@
-# Zielsetzung
+# Suche nach Werken eines Künstlers
 
-Welche SPARQL-Abfragen werden benötigt um nach bestimmten Kriterien Kunstwerke im Datenbestand von Wikidata zu finden?
+Welche SPARQL-Abfragen werden benötigt um nach bestimmten Kriterien Kunstwerke im Datenbestand von Wikidata zu finden? Wie ist Urheberschaft in Wikidata repräsentiert, wie unterscheiden sich bei WikidataKunstwerke datenmäßig von anderen Objekten?
 
 ## Suche nach Werken eines Künstlers
 
