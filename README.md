@@ -16,6 +16,6 @@ Eine sehr gute Einführung in die Grundlagen von SPARQL im Hinblick auf die Kuns
 
 ## Themen
 
-### [Suche nach Werken eines Künstlers](https://github.com/mari-fu-berlin/wd-art-history/tree/master/Queries_Suche_nach_Werken)
+### [Suche nach Werken eines Künstlers](Queries_Suche_nach_Werken/README.md)
 
 Welche SPARQL-Abfragen werden benötigt um nach bestimmten Kriterien Kunstwerke im Datenbestand von Wikidata zu finden? Wie ist Urheberschaft in Wikidata repräsentiert, wie unterscheiden sich bei WikidataKunstwerke datenmäßig von anderen Objekten?
