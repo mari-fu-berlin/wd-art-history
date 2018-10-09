@@ -5,7 +5,7 @@
 Properties, deren zugeordnete Werte es erlauben, ihr Subjekt in einem externen System/Normdatei/Verzeichnis nachzuschlagen, werden in der Regel mit dem [typen](https://www.mediawiki.org/wiki/Wikibase/Indexing/RDF_Dump_Format#Properties) [`wikibase:ExternalId`](https://www.mediawiki.org/wiki/Wikibase/Indexing/RDF_Dump_Format#External_ID) versehen. Eine Abfrage dieses property types foerdert `3251` externe Identifier zutage (Oktober 2018):
 
 ```sparql
-select (count(?property) as ?num) {
+SELECT (COUNT(?property) as ?num) {
   ?property wikibase:propertyType wikibase:ExternalId .
 }
 ```
@@ -13,9 +13,9 @@ select (count(?property) as ?num) {
 Einige dieser Properties, beispielsweise *GND ID* (`P227`) sind zusaetzlich Instanzen der Klasse *Wikidata-Eigenschaft für Normdaten* (`PQ18614948`): von den besagten `3251` external ID Properties erfuellen `210` diese Bedingung. Allerdings ist nicht jede *Normdaten*-Property gleichzeitig ein externer Identifikator; unter den `19` *Normdaten*-Properties, die nicht als externe Identifikatoren ausgezeichnet sind, finden sich z.B. die Eigenschaften *Dewey-Dezimalklasifikation* (`P1036`) und *HURDAT-Kennung* (`P502`):
 
 ```sparql
-select ?property ?propertyLabel {
+SELECT ?property ?propertyLabel {
   ?property wdt:P31 wd:Q18614948 .
-  minus {
+  MINUS {
     ?property wikibase:propertyType wikibase:ExternalId .
   }
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
@@ -38,7 +38,7 @@ WHERE
 Wenn `externalId`-Properties mit einem *URL-Formatierer* (`P1630`) ausgestattet sind (?), koennen die vergebenen Werte direkt als `URL`s bezogen werden, indem z.B. der normalisierte Wikidata Truthy Namespace (`wdtn:`) verwendet wird:
 
 ```sparql
-select ?item ?itemLabel ?value {
+SELECT ?item ?itemLabel ?value {
   ?item wdtn:P227 ?value ;
         wdt:P31 wd:Q5 ;
         wdt:P800 ?work .
@@ -59,7 +59,7 @@ Bedingung dafuer scheint aber tatsaechlich zu sein, dasz die Property sowohl ein
 Die Property *exakte Übereinstimmung* (`P2888`) ist kein externer Identifikator, sondern eine `wikibase:Url`. Trotzdem wird sie verwendet, um Wikidata-Items als Aequivalente zu externen Inhalten auszuzeichnen. Folgende Query liefert eine Liste von Personen (`Q5`), die anhand ihrer Eintragung auf der Webseite `nobelprize.org` identifiziert werden koennen:
 
 ```sparql
-select ?item ?itemLabel ?id {
+SELECT ?item ?itemLabel ?id {
   ?item wdt:P31 wd:Q5 .
   ?item wdt:P2888 ?id .
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
