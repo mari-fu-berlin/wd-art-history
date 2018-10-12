@@ -67,5 +67,41 @@ SELECT ?item ?itemLabel ?id {
 ```
 
 
+## Queries
+
+Finde alle Instanzen von *Wikidata-Eigenschaft zur Identifizierung von Kunstwerken* ([`Q44847669`](https://www.wikidata.org/wiki/Q44847669)), finde heraus welche Institution diesen Identifier vergibt ([`P2378`](https://www.wikidata.org/wiki/Property:P2378)), von welchem Typ diese Institution ist, wie viele Items mit dem Identifier identifiziert werden, und wie viele von diesen Items auszerdem die Eigenschaft *Inventarnummer* ([`P217`](https://www.wikidata.org/wiki/Property:P217)) verwenden. 
+
+```sparql
+SELECT ?identifier 
+       ?identifierLabel 
+       ?inst 
+       ?instLabel 
+       ?instKat
+       ?instKatLabel
+       ?itemcount 
+       ?inventarisiert 
+       ?uninventarisiert {
+  BIND (?itemcount - ?inventarisiert AS ?uninventarisiert) .
+  { 
+    SELECT ?identifier 
+           ?inst 
+           ?instKat
+           (count(?item) AS ?itemcount) 
+           (count(?inv) AS ?inventarisiert) WHERE {
+             ?identifier wdt:P31 wd:Q44847669 ; 
+                         wdt:P2378 ?inst ;
+                         wikibase:directClaim ?identprop .
+             ?inst wdt:P31 ?instKat .
+             ?item ?identprop ?id . 
+             OPTIONAL {
+               ?item wdt:P217 ?inv . 
+             }
+           }
+    GROUP BY ?identifier ?inst ?instKat
+  }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
+* [Run on WDQS](http://tinyurl.com/y8wlxamu)
 
 
