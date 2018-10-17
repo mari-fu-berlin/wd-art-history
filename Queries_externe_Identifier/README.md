@@ -1,6 +1,20 @@
-# Nutzung externer Identifikatoren
+# Werke identifizieren
 
-## Was sind externe Identifikatoren?
+Eine interessante Option für die Einbindung von Wikidata in Infrastrukturen zur Dokumentation von kunsthistorischen Objekten und kunsthistorischem Wissen besteht darin, Wikidata als "Metadata-Hub" einzusetzen. Die wesentliche Funktion von Wikidata besteht aus dieser Perspektive darin, verschiendene digital dokumentierte Informationen zu einem Werk/Objekt zu verknüpfen. Im Extremfall verzeichnet Wikidata dann selbst keine bzw. nur die elementarsten Informationen über das Objekt, stellt aber sicher, dass Informationen, die sich auf dasselbe Werk/Objekt beziehen, zuverlässig miteinander verknüpft werden können. Dies kann von Wikidata aus geschehen u.a. über eine der folgenden Eigenschaften:
+
+* [`P973` wird beschrieben in URL](https://www.wikidata.org/wiki/Property:P973)
+* [`P227` offizielle Website](https://www.wikidata.org/wiki/Property:P856)
+
+Als Objekt dieser Statements ist die URL eines ausführlicheren Datensatzes zu diesem Werk hinterlegt. Ist der Betreffende Datensatz Teil eines Normdatenrepositoriums, finden sich die Statements in der Rubrik "Identifikatoren", wobei die Eigenschaft spezifisch für das betreffende Repositorium ist, also z.B.:
+
+* [`P214` VIAF](https://www.wikidata.org/wiki/Property:P214)
+* [`P227` GND](https://www.wikidata.org/wiki/Property:P227)
+
+Während es sich bei den beiden erwähnten Beispielen um allgemeine Normdatenrepositorien handelt ([`Q18614948` Wikidata-Eigenschaft für Normdaten](https://www.wikidata.org/wiki/Q18614948)), gibt es auch spezifische Eigenschaften für die Identifikation von Kunstwerken. Dazu ausführlich im folgenden Abschnitt.
+
+Zuvor sei aber zunächst die zweite Möglichkeit erwähnt, wie Wikidata zur Verknüpfung von Werkdaten eingesetzt werden kann: Indem externe Datensätze zu einem Werk an ihrem jeweiligen Ort (einer anderen Datenbank, Website ...) auf den Wikidataeintrag zu einem Werk verweisen bzw. verlinken.
+
+## Spezifische Wikidata-Eigenschaften zur Identifizierung von Kunstwerken
 
 Properties, deren zugeordnete Werte es erlauben, ihr Subjekt in einem externen System/Normdatei/Verzeichnis nachzuschlagen, werden in der Regel mit dem [typen](https://www.mediawiki.org/wiki/Wikibase/Indexing/RDF_Dump_Format#Properties) [`wikibase:ExternalId`](https://www.mediawiki.org/wiki/Wikibase/Indexing/RDF_Dump_Format#External_ID) versehen. Eine Abfrage dieses property types foerdert `3251` externe Identifier zutage (Oktober 2018):
 
@@ -27,7 +41,7 @@ in den Namespaces `wdt:` bzw. `p:` addressierte Praedikate abbilden (Query aus [
 
 ```sparql
 SELECT (COUNT(?propertyclaim) AS ?count)
-WHERE 
+WHERE
 {
   wd:Q762 ?propertyclaim ?value  .
   ?property wikibase:directClaim ?propertyclaim .
@@ -69,32 +83,32 @@ SELECT ?item ?itemLabel ?id {
 
 ## Queries
 
-Finde alle Instanzen von *Wikidata-Eigenschaft zur Identifizierung von Kunstwerken* ([`Q44847669`](https://www.wikidata.org/wiki/Q44847669)), finde heraus welche Institution diesen Identifier vergibt ([`P2378`](https://www.wikidata.org/wiki/Property:P2378)), von welchem Typ diese Institution ist, wie viele Items mit dem Identifier identifiziert werden, und wie viele von diesen Items auszerdem die Eigenschaft *Inventarnummer* ([`P217`](https://www.wikidata.org/wiki/Property:P217)) verwenden. 
+Finde alle Instanzen von *Wikidata-Eigenschaft zur Identifizierung von Kunstwerken* ([`Q44847669`](https://www.wikidata.org/wiki/Q44847669)), finde heraus welche Institution diesen Identifier vergibt ([`P2378`](https://www.wikidata.org/wiki/Property:P2378)), von welchem Typ diese Institution ist, wie viele Items mit dem Identifier identifiziert werden, und wie viele von diesen Items auszerdem die Eigenschaft *Inventarnummer* ([`P217`](https://www.wikidata.org/wiki/Property:P217)) verwenden.
 
 ```sparql
-SELECT ?identifier 
-       ?identifierLabel 
-       ?inst 
-       ?instLabel 
+SELECT ?identifier
+       ?identifierLabel
+       ?inst
+       ?instLabel
        ?instKat
        ?instKatLabel
-       ?itemcount 
-       ?inventarisiert 
+       ?itemcount
+       ?inventarisiert
        ?uninventarisiert {
   BIND (?itemcount - ?inventarisiert AS ?uninventarisiert) .
-  { 
-    SELECT ?identifier 
-           ?inst 
+  {
+    SELECT ?identifier
+           ?inst
            ?instKat
-           (count(?item) AS ?itemcount) 
+           (count(?item) AS ?itemcount)
            (count(?inv) AS ?inventarisiert) WHERE {
-             ?identifier wdt:P31 wd:Q44847669 ; 
+             ?identifier wdt:P31 wd:Q44847669 ;
                          wdt:P2378 ?inst ;
                          wikibase:directClaim ?identprop .
              ?inst wdt:P31 ?instKat .
-             ?item ?identprop ?id . 
+             ?item ?identprop ?id .
              OPTIONAL {
-               ?item wdt:P217 ?inv . 
+               ?item wdt:P217 ?inv .
              }
            }
     GROUP BY ?identifier ?inst ?instKat
@@ -103,5 +117,3 @@ SELECT ?identifier
 }
 ```
 * [Run on WDQS](http://tinyurl.com/y8wlxamu)
-
-
